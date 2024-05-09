@@ -36,7 +36,7 @@ GiniBot, designed for Harbour Space students in Bangkok, Thailand, is a Telegram
    ```
 
 ## Usage
-To trigger the welcome message and option menu , start the bot by sending the command /start.
+To trigger the welcome message and option menu, start the bot by sending the command /start.
 
 1. Start the bot by sending /start.
 2. Reply to the bot with your desired category.
