@@ -2,6 +2,7 @@ from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import Application, CommandHandler, MessageHandler, filters
 from dotenv import load_dotenv
 from utils import read_csv_with_column_filter
+import random
 import os
 
 
@@ -15,14 +16,24 @@ async def start(update: Update, context):
 
 
 async def handle_reply(update, context):
-    filename = 'ginidata.csv'
-    column_name = '\ufeffCategory'
-    option_selected = update.message.text
+    filename = 'data.csv'
+    column_name = 'Category'
+    option_selected = update.message.text.lower()
+
     csv_data = read_csv_with_column_filter(filename, column_name, option_selected)
-    message = "Here are my recommendations:\n\n"
-    await update.message.reply_text(message, parse_mode='HTML')
+
+    messages = [f"Below are the {option_selected}s I recommend:\n\n",
+        f"Presenting my top {option_selected}s picks:\n\n",
+        f"Here's a list of {option_selected}s I suggest:\n\n",
+        f"I've curated a selection of {option_selected}s for you:\n\n",
+        f"Check out my recommended {option_selected}s:\n\n"]
+
+    await update.message.reply_text(random.choice(messages), parse_mode='HTML')
     for idx, row in enumerate(csv_data):
-        text_with_link = f"<a href='{row[2]}'>{idx+1}. {row[1]}</a>\n"
+        if option_selected == 'hospital':
+            text_with_link = f"<a href='{row[2]}'>\n<b>{idx+1}. {row[1]}</b></a>\n{row[4]}\nWith English support: {row[5]}\n\n"
+        else:
+            text_with_link = f"<a href='{row[2]}'>\n<b>{idx+1}. {row[1]}</b></a>\n{row[4]}\nPrice range: ฿{row[3]}\nWith English support: {row[5]}\nDelivery available: {row[6]}\n\n"
         message = text_with_link
         await update.message.reply_text(message, parse_mode='HTML')
 
