@@ -13,17 +13,26 @@ BOT_TOKEN = os.getenv('BOT_TOKEN')
 
 async def start(update: Update, context):
     first_name = update.message.chat.first_name
-    welcome_message = f"""<b style='font-size: 24px;'>🌟 Hey {first_name}! 🌟</b>\n\nI am <b>Gini</b>, your virtual assistant 🤖 tailored for Harbour Space Bangkok students. I'm here to serve as your personal guide, providing recommendations for exciting destinations and must-visit spots in Thailand. 🇹🇭 Additionally, I'll also serve as your academic guide, offering assistance and resources for your studies. 📚 
+    welcome_message = f"""<b style='font-size: 24px;'>🌟 Hey {first_name}! 🌟</b>\n\nI am <b>Gini</b>, your virtual assistant tailored for the lifestyle and academic needs of students at Harbour Space Bangkok.
 
-You can control me by clicking any option below or sending these commands. 💬
+<b>Commands 💬</b>
+You can control me by clicking any option below or sending these commands.
 
-/life - explore must-visit places and essentials in Thailand
-/school - search school-related resources
-
-
+🇹🇭  /life - explore must-visit places and essentials in Thailand
+📚  /school - search school-related resources
+🤖  /aboutme - describe the functionality of the bot
 """
     markup = ReplyKeyboardMarkup([['/life', '/school']], one_time_keyboard=True)
     await update.message.reply_text(welcome_message, parse_mode="HTML", reply_markup=markup)
+
+async def aboutme(update: Update, context):
+    description = """I am Telegram bot developed by Gino and BT under Anton Topchii's supervision.
+    
+My purpose is to act as your personal virtual assistant, offering suggestions for exciting places to visit and must-see attractions in Thailand. Furthermore, I'm here to support you academically, providing aid and resources for your studies.
+
+If you have any feature requests, feel free to <a href="mailto:ginoasuncion@gmail.com">email us</a> at ginoasuncion@gmail.com or <a href="mailto:supakavadee.r@gmail.com">supakavadee.r@gmail.com</a>."""
+
+    await update.message.reply_text(description, parse_mode="HTML")
 
 
 async def life(update: Update, context):
@@ -35,7 +44,6 @@ async def school(update: Update, context):
     welcome_message = "Please select a category, and I'll provide you with relevant links."
     markup = ReplyKeyboardMarkup([['Purple Code', 'International Students', 'UTCC Facilities']], one_time_keyboard=True)
     await update.message.reply_text(welcome_message, reply_markup=markup)
-
 
 async def handle_reply(update, context):
     option_selected = update.message.text.lower()
@@ -64,13 +72,15 @@ async def handle_reply(update, context):
     elif option_selected in ['purple code', 'international students', 'utcc facilities']:
         message = f'You selected: {option_selected}'
         await update.message.reply_text(message, parse_mode='HTML')
+
    
 def main():
     app = Application.builder().token(BOT_TOKEN).build()
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_reply))
     app.add_handler(CommandHandler(command='start', callback=start))
     app.add_handler(CommandHandler(command='life', callback=life))
-    app.add_handler(CommandHandler(command='school', callback=school))    
+    app.add_handler(CommandHandler(command='school', callback=school))
+    app.add_handler(CommandHandler(command='aboutme', callback=aboutme))
     app.run_polling()
 
 if __name__ == '__main__':
