@@ -15,14 +15,15 @@ async def start(update: Update, context):
     first_name = update.message.chat.first_name
     welcome_message = f"""<b style='font-size: 24px;'>🌟 Hey {first_name}! 🌟</b>\n\nI am <b>Gini</b>, your virtual assistant 🤖 tailored for Harbour Space Bangkok students. I'm here to serve as your personal guide, providing recommendations for exciting destinations and must-visit spots in Thailand. 🇹🇭 Additionally, I'll also serve as your academic guide, offering assistance and resources for your studies. 📚 
 
-You can control me by sending these commands. 💬
+You can control me by clicking any option below or sending these commands. 💬
 
 /life - explore must-visit places and essentials in Thailand
 /school - search school-related resources
 
 
 """
-    await update.message.reply_text(welcome_message, parse_mode="HTML")
+    markup = ReplyKeyboardMarkup([['/life', '/school']], one_time_keyboard=True)
+    await update.message.reply_text(welcome_message, parse_mode="HTML", reply_markup=markup)
 
 
 async def life(update: Update, context):
@@ -31,7 +32,7 @@ async def life(update: Update, context):
     await update.message.reply_text(welcome_message, reply_markup=markup)
 
 async def school(update: Update, context):
-    welcome_message = "Sawadee Harbour Space students! Welcome to GiniBot, your pocket guide to awesome places and essentials in Bangkok, Thailand. Please select a place to go below, and I'll recommend some great options for you."
+    welcome_message = "Please select a category, and I'll provide you with relevant links."
     markup = ReplyKeyboardMarkup([['Purple Code', 'International Students', 'UTCC Facilities']], one_time_keyboard=True)
     await update.message.reply_text(welcome_message, reply_markup=markup)
 
@@ -39,7 +40,7 @@ async def school(update: Update, context):
 async def handle_reply(update, context):
     option_selected = update.message.text.lower()
 
-    if option_selected in ['cafe', 'restaurants', 'hospital']:
+    if option_selected in ['cafe', 'restaurant', 'hospital']:
         filename = 'data.csv'
         column_name = 'Category'
         
