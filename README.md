@@ -1,4 +1,4 @@
-# GiniBot: HS Bangkok Telegram Bot
+# GiniBot: Harbour Space Bangkok Telegram Bot
 <b>GiniBot</b> is a Telegram Chatbot designed for Harbour Space students in the Bangkok campus. The bot offers suggestions for amazing destinations and essential spots to explore throughout Thailand. Additionally, the bot also serves as an academic guide, offering assistance and resources for students. 
 
 
