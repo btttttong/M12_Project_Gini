@@ -20,9 +20,20 @@ You can control me by clicking any option below or sending these commands.
 
 🇹🇭  /life - explore must-visit places and essentials in Thailand
 📚  /school - search school-related resources
+🤖  /aboutme - describe the functionality of the bot
 """
     markup = ReplyKeyboardMarkup([['/life', '/school']], one_time_keyboard=True)
     await update.message.reply_text(welcome_message, parse_mode="HTML", reply_markup=markup)
+
+async def aboutme(update: Update, context):
+    description = """I am Telegram bot developed by Gino and BT under Anton Topchii's supervision.
+    
+My purpose is to act as your personal virtual assistant, offering suggestions for exciting places to visit and must-see attractions in Thailand. Furthermore, I'm here to support you academically, providing aid and resources for your studies.
+
+If you have any feature requests, feel free to <a href="mailto:ginoasuncion@gmail.com">email us</a> at ginoasuncion@gmail.com or <a href="mailto:supakavadee.r@gmail.com">supakavadee.r@gmail.com</a>."""
+
+    await update.message.reply_text(description, parse_mode="HTML")
+
 
 async def life(update: Update, context):
     welcome_message = "Please select a place to go below, and I'll recommend some great options for you."
@@ -69,6 +80,7 @@ def main():
     app.add_handler(CommandHandler(command='start', callback=start))
     app.add_handler(CommandHandler(command='life', callback=life))
     app.add_handler(CommandHandler(command='school', callback=school))
+    app.add_handler(CommandHandler(command='aboutme', callback=aboutme))
     app.run_polling()
 
 if __name__ == '__main__':
