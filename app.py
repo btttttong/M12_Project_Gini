@@ -54,13 +54,19 @@ async def handle_reply(update, context):
         
         csv_data = read_csv_with_column_filter(filename, column_name, option_selected)
 
-        messages = [f"Below are the {option_selected}s I recommend:\n\n",
-            f"Presenting my top {option_selected}s picks:\n\n",
-            f"Here's a list of {option_selected}s I suggest:\n\n",
-            f"I've curated a selection of {option_selected}s for you:\n\n",
-            f"Check out my recommended {option_selected}s:\n\n"]
+        messages = [f"<b>Below are the {option_selected}s I recommend:</b>\n\n",
+            f"<b>Presenting my top {option_selected}s picks:</b>\n\n",
+            f"<b>Here's a list of {option_selected}s I suggest:</b>\n\n",
+            f"<b>I've curated a selection of {option_selected}s for you:</b>\n\n",
+            f"<b>Check out my recommended {option_selected}s:</b>\n\n"]
+        
+        if option_selected == 'cafe':
+            await update.message.reply_text('☕  ' + random.choice(messages), parse_mode='HTML')
+        elif option_selected == 'restaurant':
+            await update.message.reply_text('🍝  ' + random.choice(messages), parse_mode='HTML')
+        elif option_selected == 'hospital':
+            await update.message.reply_text('🏥  ' + random.choice(messages), parse_mode='HTML')
 
-        await update.message.reply_text(random.choice(messages), parse_mode='HTML')
         for idx, row in enumerate(csv_data):
             if option_selected == 'hospital':
                 text_with_link = f"<a href='{row[2]}'>\n<b>{idx+1}. {row[1]}</b></a>\n{row[4]}\nWith English support: {row[5]}\n\n"
@@ -84,7 +90,7 @@ async def handle_reply(update, context):
         # await update.message.reply_text(random.choice(messages), parse_mode='HTML')
         for idx, row in enumerate(csv_data):
             if option_selected == 'international students':
-                message = f"""‼️ Important Reminders for International Students ‼️
+                message = f"""‼️ <b>Important Reminders for International Students</b> ‼️
 
 {row[4]}
 
@@ -92,7 +98,7 @@ For detailed information related to visa and immigration requirements for intern
                 await update.message.reply_text(message, parse_mode='HTML')
 
         if option_selected == 'staff':
-            message = f"🏫 Here are the amazing staff of Harbour Space: 🏫\n"
+            message = f"🏫 <b>Here are the amazing staff of Harbour Space:</b> 🏫\n"
             await update.message.reply_text(message, parse_mode='HTML')
             for idx, row in enumerate(csv_data):
                 message = f"<a href='{row[5]}'><b>{row[1]}</b></a>\n{row[2]}\nEmail: <a href='{row[3]}'>{row[3]}</a>\n\n"
