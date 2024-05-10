@@ -1,11 +1,12 @@
-# Project Gini: HS BKK Telegram Bot
-GiniBot, designed for Harbour Space students in Bangkok, Thailand, is a Telegram Chatbot offering suggestions for fantastic destinations and essential spots to explore throughout Bangkok, Thailand.
+# GiniBot: HS Bangkok Telegram Bot
+<b>GiniBot</b> is a Telegram Chatbot designed for Harbour Space students in the Bangkok campus. The bot offers suggestions for amazing destinations and essential spots to explore throughout Thailand. Additionally, the bot also serves as an academic guide, offering assistance and resources for students. 
+
 
 
 ## Features
-- **Recommendations:** Provides recommendations based on user input.
-- **Google Maps Integration:** Includes links to Google Maps for easy navigation to recommended places.
-- **Interactive:** Offers a user-friendly interface for selecting recommendations.
+- **Suggestions with Google Maps Integration:** Offers advice on top attractions and vital facilities such as hospitals, with convenient links to Google Maps for easy navigation.
+- **Access to Academic Resources:** Provides links to comprehensive information and staff details.
+
 
 ## Setup
 1. **Clone the Repository:**
@@ -36,11 +37,10 @@ GiniBot, designed for Harbour Space students in Bangkok, Thailand, is a Telegram
    ```
 
 ## Usage
-To trigger the welcome message and option menu, start the bot by sending the command /start.
-
 1. Start the bot by sending /start.
-2. Reply to the bot with your desired category.
-3. The bot will respond with a list of recommendations from the specified category with the corresponding Google Map link.
+2. Reply to the bot or click on the menu with the desired main theme: /life or /school.
+3. The bot will respond with a list of categories under each main theme.
+4. Click the category of interest to display the information and the relevant links.
 
 ## Dependencies
 - [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot): Python interface for the Telegram Bot API.
