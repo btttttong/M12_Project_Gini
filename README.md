@@ -1,5 +1,5 @@
 # GiniBot: Harbour Space Bangkok Telegram Bot
-<b>GiniBot</b> is a Telegram Chatbot designed for Harbour Space students in the Bangkok campus. The bot offers suggestions for amazing destinations and essential spots to explore throughout Thailand. Additionally, the bot also serves as an academic guide, offering assistance and resources for students. 
+<b>GiniBot</b> is a Telegram Chatbot designed for Harbour Space students in the Bangkok campus. The bot offers suggestions for amazing destinations and essential spots to explore throughout Thailand. Additionally, the bot also serves as an academic guide, offering assistance and resources for students.
 
 
 
@@ -45,4 +45,3 @@
 ## Dependencies
 - [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot): Python interface for the Telegram Bot API.
 - [python-dotenv](https://github.com/theskumar/python-dotenv): Library for managing environment variables in a .env file.
-

@@ -27,7 +27,7 @@ def read_csv_with_column_filter(filename: str, column_name: str, value_to_match:
                 break
         if column_index is None:
             raise ValueError(f"Column '{column_name}' not found in the CSV file.")
-        
+
         for row in csv_reader:
             if row[column_index] == value_to_match:
                 data.append(row)
