@@ -1,10 +1,7 @@
 from typing import List, Any
 import csv
 
-
-def read_csv_with_column_filter(
-    filename: str, column_name: str, value_to_match: Any
-) -> List[List[str]]:
+def read_csv_with_column_filter(filename: str, column_name: str, value_to_match: Any) -> List[List[str]]:
     """
     Read a CSV file and filter rows based on a specific column's value.
 
@@ -20,7 +17,7 @@ def read_csv_with_column_filter(
         ValueError: If the specified column is not found in the CSV file.
     """
     data: List[List[str]] = []
-    with open(filename, "r") as file:
+    with open(filename, 'r') as file:
         csv_reader = csv.reader(file)
         header = next(csv_reader)  # Read the header row
         column_index = None
