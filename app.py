@@ -98,7 +98,7 @@ For detailed information related to visa and immigration requirements for intern
                 await update.message.reply_text(message, parse_mode='HTML')
 
         if option_selected == 'staff':
-            message = f"🏫 <b>Here are the amazing staff of Harbour Space:</b> 🏫\n"
+            message = "🏫 <b>Here are the amazing staff of Harbour Space:</b> 🏫\n"
             await update.message.reply_text(message, parse_mode='HTML')
             for idx, row in enumerate(csv_data):
                 message = f"<a href='{row[5]}'><b>{row[1]}</b></a>\n{row[2]}\nEmail: <a href='{row[3]}'>{row[3]}</a>\n\n"
